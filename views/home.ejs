@@ -1,0 +1,22 @@
+
+<%- include("partials/header") -%>
+
+<h1> Home</h1>
+<p><%= homeContent %> </p>
+
+<%  postList.forEach(function(post){  %>
+    
+    <div>
+    <h1 class="titlepost"><%=post.title%></h1>
+    <p><%= post.content.substring(0,100)%>... <a href="/posts/<%=post.title%>">Read more ..</a> </p>
+   
+
+</div>
+<% });    %>
+ <form class="home_btn" action="/home" method="post">
+ <button type="submit" class="btn-primary btn-sm">Add more Post</button>
+</form>
+
+
+
+<%- include("partials/footer") -%>

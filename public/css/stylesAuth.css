@@ -1,0 +1,25 @@
+
+body {
+  background-color: #E8ECEF;
+  font-family: 'Merriweather', serif;
+}
+
+.centered {
+    padding-top: 200px;
+    text-align: center;
+}
+.credentialCont{
+  margin-left: 20%;
+  margin-top: 10%;
+} 
+.secret-text {
+  text-align: center;
+  font-size: 2rem;
+  color: #fff;
+  background-color: #000;
+}
+
+.heading{
+  font-family: 'Merriweather', serif;
+  font-size: 3rem;
+}
