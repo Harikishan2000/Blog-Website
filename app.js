@@ -26,12 +26,13 @@ const contactContent = "Scelerisque eleifend donec pretium vulputate sapien. Rho
 
 
 
-
+var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
 var postList=[];
 var usergmail;
 const postSchema ={
     title:String,
-    content:String
+    content:String,
+    time:String
 }
 
 // mongoose.connect("mongodb://localhost:27017/userDB", {useNewUrlParser: true});
@@ -56,11 +57,9 @@ app.get("/home",function(req,res){
                   userposts.forEach(function(userPost){
                     let p={
                         title:userPost.title,
-                        content:userPost.content
+                        content:userPost.content,
+                        time:userPost.time
                     }
-                    console.log(userPost.title); 
-                    console.log(userPost.content); 
-    
                      postList.push(p);
                 });   
             }    
@@ -86,10 +85,11 @@ app.post("/home",function(req,res){
 });
 
 app.post("/compose",function(req,res){
-  
+         today = new Date();
     var  newPost = {
         title:req.body.titleName,
-        content:req.body.postText
+        content:req.body.postText,
+        time : today.toLocaleDateString("en-US", options),
     }
    /*   const  post = new Post({
             title:req.body.titleName,
@@ -116,7 +116,7 @@ app.get("/posts/:postName",function(req,res){
         
          if(titlePostReq==_.lowerCase(post.title)){
              console.log("matched");
-            res.render("post",{postTitle:post.title,postContent:post.content}); 
+            res.render("post",{postTitle:post.title,postContent:post.content,postTime:post.time}); 
          } else  console.log("not matched");
     });
     
