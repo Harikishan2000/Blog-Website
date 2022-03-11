@@ -4,9 +4,9 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
-const mongoose = require("mongoose");  
-const bcrypt = require("bcrypt");
-const saltRounds = 10;
+const mongoose = require("mongoose"); 
+const md5 = require("md5"); 
+
 
 // Load the full build.
 var _ = require('lodash');
@@ -150,11 +150,11 @@ app.get("/", function(req, res){
         }
       }
 
-    bcrypt.hash(req.body.password, saltRounds, function(err, hash) {
+  
        
       const newUser =  new User({
           email: req.body.username,
-          password: hash
+          password: md5(req.body.password)
         });
         usergmail =req.body.username;
 
@@ -180,24 +180,25 @@ app.get("/", function(req, res){
       });
 
        
-      });
+    
     
     });
 
     app.post("/login", function(req, res){
         usergmail = req.body.username;
-        password = req.body.password;
+       // password = req.body.password;
+       const password = md5(req.body.password);
         User.findOne({email: usergmail}, function(err, foundUser){
             if (err) {
               console.log(err);
             
             } else {
               if (foundUser) {
-                bcrypt.compare(password, foundUser.password, function(err, result) {
-                    if (result === true) {
+               
+                    if (foundUser.password == password) {
                       res.redirect("/home");
                     }else{ res.redirect('/');  }
-                  });
+               
                 }else{
                     res.redirect('/');  
                 }

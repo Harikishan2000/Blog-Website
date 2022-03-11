@@ -8,12 +8,11 @@
   "author": "Harikishan",
   "license": "ISC",
   "dependencies": {
-    "bcrypt": "^5.0.1",
-    "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.2",
     "ejs": "^2.7.4",
     "express": "^4.16.3",
     "lodash": "^4.17.21",
+    "md5": "^2.3.0",
     "mongoose": "^6.2.4"
   },
   "description": "my first blog application"
