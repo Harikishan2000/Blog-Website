@@ -17,8 +17,8 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 
-
-mongoose.connect("mongodb+srv://Hari2000:Hari2000@cluster0.7meav.mongodb.net/blogdb", {useNewUrlParser: true});
+// need to add mongo URl
+mongoose.connect(MONGOURL, {useNewUrlParser: true});
 
 const homeStartingContent = "Here, you can write your daily blog ";
 const aboutContent = "Hac habitasse platea dictumst vestibulum rhoncus est pellentesque. Dictumst vestibulum rhoncus est pellentesque elit ullamcorper. Non diam phasellus vestibulum lorem sed. Platea dictumst quisque sagittis purus sit. Egestas sed sed risus pretium quam vulputate dignissim suspendisse. Mauris in aliquam sem fringilla. Semper risus in hendrerit gravida rutrum quisque non tellus orci. Amet massa vitae tortor condimentum lacinia quis vel eros. Enim ut tellus elementum sagittis vitae. Mauris ultrices eros in cursus turpis massa tincidunt dui.";
@@ -35,7 +35,7 @@ const postSchema ={
     time:String
 }
 
-// mongoose.connect("mongodb://localhost:27017/userDB", {useNewUrlParser: true});
+
 const userSchema = new mongoose.Schema ({
   email: String,
   password: String,
